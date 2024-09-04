@@ -1,10 +1,13 @@
 const winnerEl = document.getElementById('winner')
 const personScoreEl = document.getElementById('person-score')
 const computerScoreEl = document.getElementById('computer-score')
-
+const youChoosedEl = document.getElementById('you-choosed')
+const computerChoosedEl = document.getElementById('computer-choosed')
+const resultEl = document.getElementById('result-board')
 
 let personScore = 0
 let computerScore = 0
+let winner;
 
 
 function getComputerChoice() {
@@ -29,7 +32,7 @@ function getComputerChoice() {
     return computerChoice
 }
 
-let winner;
+
 function getPersonChoice(choice) {
     let personChoice = choice
 
@@ -40,10 +43,13 @@ function getPersonChoice(choice) {
 
     winner = getWinner(personChoice, computerChoice)
 
-    print()
+    print(personChoice, computerChoice)
 }
 
-function print(){
+function print(personChoice, computerChoice){
+    resultEl.style.visibility = "visible";
+    youChoosedEl.innerHTML = personChoice;
+    computerChoosedEl.innerHTML = computerChoice;
     winnerEl.innerHTML = winner;
     personScoreEl.innerHTML = personScore;
     computerScoreEl.innerHTML = computerScore;
@@ -53,50 +59,50 @@ function print(){
 function getWinner(person, computer) {
     let verdict;
     if (person == computer) {
-        console.log("draw");
-        verdict = "draw"
+        console.log("Tie");
+        verdict = "Tie"
     }
     else {
         if (person == "rock") {
             if (computer == "scissor") {
                 console.log("person winner");
-                verdict = "person"
+                verdict = "You"
     
             }
             else {
                 console.log("computer winner");
-                verdict = "computer"
+                verdict = "Computer"
     
             }
         }
         else if (person == "paper") {
             if (computer == "rock") {
                 console.log("person winner");
-                verdict = "person"
+                verdict = "You"
     
             }
             else {
                 console.log("computer winner");
-                verdict = "computer"
+                verdict = "Computer"
     
             }
         }
         else if (person == "scissor") {
             if (computer == "paper") {
                 console.log("person winner");
-                verdict = "person"
+                verdict = "You"
     
             }
             else {
                 console.log("computer winner");
-                verdict = "computer"
+                verdict = "Computer"
     
             }
         }
     }
-    if(verdict == "computer")
+    if(verdict == "Computer")
         computerScore++
-    else if(verdict == "person")
+    else if(verdict == "You")
         personScore++
 
     return verdict
